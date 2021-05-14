@@ -149,9 +149,10 @@ namespace StackExchange.Redis.Extensions.Core.Implementations
             if (this.connections.Count >= this.redisConfiguration.PoolSize)
                 return;
 
+            logger.LogDebug("Creating the redis connection pool with {0} connections.", this.redisConfiguration.PoolSize);
+
             for (var i = 0; i < this.redisConfiguration.PoolSize; i++)
             {
-                logger.LogDebug("Creating the redis connection pool with {0} connections.", this.redisConfiguration.PoolSize);
                 this.EmitConnection();
             }
         }
